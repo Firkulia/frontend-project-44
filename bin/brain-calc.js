@@ -1,25 +1,28 @@
-import readlineSync from 'readline-sync'
 import { getUserName } from '../src/cli.js'
+import readlineSync from 'readline-sync'
 
 export default () => {
     const userName = getUserName()
-    console.log('Answer "yes" if the number is even, otherwise answer "no".')
+    console.log('What is the result of the expression?')
 
     let successCounter = 0
     while (successCounter < 3) {
-        // get a number and give question to the user
-        const number = Math.floor(Math.random() * 199) + 1 // 1 - 199
-        console.log('Question: ' + number)
+        // get numbers and give question to the user
+        const numberX = Math.floor(Math.random() * 100) + 1
+        const numberY = Math.floor(Math.random() * 100) + 1
+        const operations = ['+', '-']
+        const operation = operations[Math.floor(Math.random() * operations.length)]
+
+        console.log(`Question: ${numberX} ${operation} ${numberY}`)
         const answer = readlineSync.question('Your answer: ')
 
         // identify correct answer
         let correctAnswer
-        if (number % 2 === 0) { correctAnswer = 'yes' }
-        else { correctAnswer = 'no' }
-
+        if (operation == '+') {
+            correctAnswer = numberX + numberY
+        } else correctAnswer = numberX - numberY
         if (answer == correctAnswer) {
             successCounter += 1
-            console.log('Correct!')
         } else {
             console.log(`'${answer}' is wrong answer ;(. Correct answer was '${correctAnswer}'`)
             console.log(`Let's try again, ${userName}!`)
