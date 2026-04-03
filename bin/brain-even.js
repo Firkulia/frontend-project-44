@@ -12,7 +12,7 @@ export default () => {
         console.log('Question: ' + number)
         const answer = readlineSync.question('Your answer: ')
 
-        // identify correct answer
+        // identify correct answer and compare
         let correctAnswer
         if (number % 2 === 0) { correctAnswer = 'yes' }
         else { correctAnswer = 'no' }
@@ -26,6 +26,6 @@ export default () => {
             return
         }
     }
-
+// if 'while' ends player wins
     console.log('Congratulations, ' + userName + '!')
 }
